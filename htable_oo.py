@@ -59,10 +59,10 @@ class HashTable:
         """
         bucket, idx = self.bucket_indexof(key)
 
-        if idx:
-            return bucket[idx]
-        else:
+        if idx is None:
             return None
+        else:
+            return bucket[idx][1]
 
     def put(self, key, value):
         """
@@ -73,10 +73,10 @@ class HashTable:
         """
         bucket, idx = self.bucket_indexof(key)
 
-        if idx:
-            bucket[idx] = value
-        else:
+        if idx is None:
             bucket.append((key, value))
+        else:
+            bucket[idx] = (key, value)
 
     def bucket_indexof(self, key):
         """
